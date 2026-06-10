@@ -43,6 +43,15 @@
       }
     });
 
+    // Yükleme anının zaman damgası (İstanbul saati) — canlı fetch ile tutarlı, donmuş tarih yok
+    const now = new Date();
+    const tz = { timeZone: 'Europe/Istanbul' };
+    const dateStr = new Intl.DateTimeFormat('tr-TR', Object.assign({ day: '2-digit', month: '2-digit', year: 'numeric' }, tz)).format(now);
+    const timeStr = new Intl.DateTimeFormat('tr-TR', Object.assign({ hour: '2-digit', minute: '2-digit', hour12: false }, tz)).format(now) + ' GMT+3';
+    document.querySelectorAll('[data-cert-time]').forEach((el) => { el.textContent = dateStr + ' ' + timeStr; });
+    document.querySelectorAll('[data-cert-time-d]').forEach((el) => { el.textContent = dateStr; });
+    document.querySelectorAll('[data-cert-time-t]').forEach((el) => { el.textContent = timeStr; });
+
     document.dispatchEvent(new CustomEvent('cert-prices-ready', { detail: prices }));
   }
 
