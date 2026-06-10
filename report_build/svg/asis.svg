@@ -1,0 +1,98 @@
+<svg viewBox="0 0 820 760" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="820" height="760" fill="#ffffff"/>
+  <style>
+    .term { fill:#e2e8f0; stroke:#475569; stroke-width:1.5; }
+    .proc { fill:#f8fafc; stroke:#475569; stroke-width:1.5; }
+    .dec  { fill:#fef9e7; stroke:#b45309; stroke-width:1.5; }
+    .pain { fill:#fde8e8; stroke:#b91c1c; stroke-width:1.3; }
+    .t { fill:#0f172a; font-size:12px; text-anchor:middle; }
+    .painlbl { fill:#991b1b; font-size:10.5px; text-anchor:start; }
+    .fl { stroke:#475569; stroke-width:1.4; fill:none; }
+    .yes { fill:#15803d; font-size:11px; font-weight:700; }
+    .no { fill:#b91c1c; font-size:11px; font-weight:700; }
+    .title { fill:#0f172a; font-size:16px; font-weight:700; text-anchor:middle; }
+  </style>
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7.5" refY="3" orient="auto">
+      <path d="M0,0 L7.5,3 L0,6" fill="none" stroke="#475569" stroke-width="1.3"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="320" y="28">AS-IS Process — Manual CBAM Obligation Estimation</text>
+
+  <!-- Start -->
+  <rect class="term" x="220" y="50" width="200" height="38" rx="19"/>
+  <text class="t" x="320" y="74">Start: AB export order received</text>
+  <path class="fl" marker-end="url(#a)" d="M320,88 L320,108"/>
+
+  <!-- 1 -->
+  <rect class="proc" x="200" y="108" width="240" height="46"/>
+  <text class="t" x="320" y="128">Gather production data manually</text>
+  <text class="t" x="320" y="144">(spreadsheets, plant records)</text>
+  <path class="fl" marker-end="url(#a)" d="M320,154 L320,174"/>
+
+  <!-- 2 -->
+  <rect class="proc" x="200" y="174" width="240" height="46"/>
+  <text class="t" x="320" y="194">Search emission factors across</text>
+  <text class="t" x="320" y="210">scattered reports/standards</text>
+  <path class="fl" marker-end="url(#a)" d="M320,220 L320,240"/>
+
+  <!-- 3 -->
+  <rect class="proc" x="200" y="240" width="240" height="46"/>
+  <text class="t" x="320" y="260">Calculate emission by hand</text>
+  <text class="t" x="320" y="276">in Excel</text>
+  <path class="fl" marker-end="url(#a)" d="M320,286 L320,306"/>
+
+  <!-- 4 -->
+  <rect class="proc" x="200" y="306" width="240" height="46"/>
+  <text class="t" x="320" y="326">Look up certificate prices</text>
+  <text class="t" x="320" y="342">via manual web search</text>
+  <path class="fl" marker-end="url(#a)" d="M320,352 L320,372"/>
+
+  <!-- 5 decision -->
+  <polygon class="dec" points="320,372 440,420 320,468 200,420"/>
+  <text class="t" x="320" y="416">Result accurate</text>
+  <text class="t" x="320" y="432">&amp; consistent?</text>
+
+  <!-- No -> consultant loop -->
+  <path class="fl" marker-end="url(#a)" d="M200,420 L120,420 L120,243 L200,243"/>
+  <text class="no" x="150" y="412">No</text>
+  <rect class="proc" x="30" y="222" width="120" height="44"/>
+  <text class="t" x="90" y="242">Pay external</text>
+  <text class="t" x="90" y="258">consultant</text>
+  <path class="fl" marker-end="url(#a)" d="M90,222 L90,200 L200,200" opacity="0"/>
+
+  <!-- Yes down -->
+  <path class="fl" marker-end="url(#a)" d="M320,468 L320,490"/>
+  <text class="yes" x="332" y="484">Yes</text>
+
+  <!-- 6 -->
+  <rect class="proc" x="200" y="490" width="240" height="46"/>
+  <text class="t" x="320" y="510">Compile compliance report</text>
+  <text class="t" x="320" y="526">manually (Word/PDF)</text>
+  <path class="fl" marker-end="url(#a)" d="M320,536 L320,556"/>
+
+  <!-- End -->
+  <rect class="term" x="220" y="556" width="200" height="38" rx="19"/>
+  <text class="t" x="320" y="580">End: estimate submitted</text>
+
+  <!-- Pain points panel -->
+  <rect class="pain" x="500" y="120" width="300" height="470" rx="6"/>
+  <text x="650" y="146" style="fill:#991b1b;font-size:13px;font-weight:700;text-anchor:middle;">Pain Points (current system)</text>
+  <text class="painlbl" x="516" y="178">• No single source of emission factors;</text>
+  <text class="painlbl" x="516" y="194">   values inconsistent between staff</text>
+  <text class="painlbl" x="516" y="220">• Manual Excel formulas — high error</text>
+  <text class="painlbl" x="516" y="236">   risk, no audit trail</text>
+  <text class="painlbl" x="516" y="262">• Certificate prices outdated by the</text>
+  <text class="painlbl" x="516" y="278">   time the report is finished</text>
+  <text class="painlbl" x="516" y="304">• Double-counting mistakes (e.g. scrap</text>
+  <text class="painlbl" x="516" y="320">   discount applied twice)</text>
+  <text class="painlbl" x="516" y="346">• Consultant dependency — slow and</text>
+  <text class="painlbl" x="516" y="362">   costly for each iteration</text>
+  <text class="painlbl" x="516" y="388">• No reusable record; every order</text>
+  <text class="painlbl" x="516" y="404">   restarts from zero</text>
+  <text class="painlbl" x="516" y="430">• No scenario comparison (EUA vs</text>
+  <text class="painlbl" x="516" y="446">   blended procurement)</text>
+  <text class="painlbl" x="516" y="472">• Cannot track obligation across the</text>
+  <text class="painlbl" x="516" y="488">   five CBAM sectors consistently</text>
+</svg>

@@ -1,0 +1,23 @@
+# Node dependencies (report build tooling)
+report_build/node_modules/
+
+# Firebase deploy cache
+.firebase/
+
+# Duplicate of the report kept at repo root
+report_build/CarbonConsulting_Final_Report.docx
+
+# Scratch text dumps
+_docx_dump.txt
+_pdf_dump.txt
+
+# Course guideline templates (instructor materials, not part of the deliverable)
+DRAFT PROGRESS REPORT.docx
+Presentation Guideline.docx
+Term Project Proposal 2026.docx
+TermProject Guidelines2026.docx
+Guideline to noCode App Development Steps.pdf
+
+# OS files
+Thumbs.db
+.DS_Store

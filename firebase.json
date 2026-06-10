@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "website",
+    "ignore": [
+      "**/.*",
+      "**/node_modules/**",
+      "**/kaynaklar.md"
+    ]
+  }
+}

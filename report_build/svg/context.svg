@@ -1,0 +1,67 @@
+<svg viewBox="0 0 940 620" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="940" height="620" fill="#ffffff"/>
+  <style>
+    .ent { fill:#f1f5f9; stroke:#475569; stroke-width:1.6; }
+    .entlbl { fill:#0f172a; font-size:13px; font-weight:700; text-anchor:middle; }
+    .entsub { fill:#64748b; font-size:11px; text-anchor:middle; }
+    .proc { fill:#e0ecfb; stroke:#1d4ed8; stroke-width:2; }
+    .proclbl { fill:#0f172a; font-size:15px; font-weight:700; text-anchor:middle; }
+    .flow { stroke:#64748b; stroke-width:1.4; fill:none; }
+    .flowlbl { fill:#334155; font-size:10.5px; text-anchor:middle; }
+    .title { fill:#0f172a; font-size:16px; font-weight:700; text-anchor:middle; }
+  </style>
+  <defs>
+    <marker id="a" markerWidth="9" markerHeight="9" refX="7.5" refY="3" orient="auto">
+      <path d="M0,0 L7.5,3 L0,6" fill="none" stroke="#64748b" stroke-width="1.3"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="470" y="30">Context Diagram (Level-0 DFD) — CarbonConsulting System</text>
+
+  <!-- Central process -->
+  <rect class="proc" x="360" y="250" width="220" height="120" rx="14"/>
+  <text class="proclbl" x="470" y="300">0</text>
+  <text class="proclbl" x="470" y="322">CarbonConsulting</text>
+  <text class="proclbl" x="470" y="342">System</text>
+
+  <!-- External entities -->
+  <rect class="ent" x="40" y="270" width="170" height="80" rx="4"/>
+  <text class="entlbl" x="125" y="302">Exporter Company</text>
+  <text class="entlbl" x="125" y="320">User</text>
+  <text class="entsub" x="125" y="338">(primary actor)</text>
+
+  <rect class="ent" x="730" y="270" width="170" height="80" rx="4"/>
+  <text class="entlbl" x="815" y="302">System</text>
+  <text class="entlbl" x="815" y="320">Administrator</text>
+  <text class="entsub" x="815" y="338">(operator)</text>
+
+  <rect class="ent" x="150" y="60" width="240" height="80" rx="4"/>
+  <text class="entlbl" x="270" y="92">Emission Factor Standards</text>
+  <text class="entsub" x="270" y="112">Worldsteel · IEA · GNR · IAI ·</text>
+  <text class="entsub" x="270" y="126">Fertilizers Europe</text>
+
+  <rect class="ent" x="550" y="60" width="240" height="80" rx="4"/>
+  <text class="entlbl" x="670" y="92">Certificate Price Sources</text>
+  <text class="entsub" x="670" y="112">Ember Climate · ICAP ·</text>
+  <text class="entsub" x="670" y="126">Supabase (live store)</text>
+
+  <!-- Flows: Exporter <-> System -->
+  <path class="flow" marker-end="url(#a)" d="M210,300 L355,295"/>
+  <text class="flowlbl" x="283" y="288">production data, sector</text>
+  <path class="flow" marker-end="url(#a)" d="M355,335 L210,330"/>
+  <text class="flowlbl" x="283" y="352">emission, cert need, cost</text>
+
+  <!-- Admin -> System -->
+  <path class="flow" marker-end="url(#a)" d="M730,300 L585,295"/>
+  <text class="flowlbl" x="658" y="288">factor &amp; price updates</text>
+  <path class="flow" marker-end="url(#a)" d="M585,335 L730,330"/>
+  <text class="flowlbl" x="658" y="352">system reports</text>
+
+  <!-- Emission Standards -> System -->
+  <path class="flow" marker-end="url(#a)" d="M300,140 L430,248"/>
+  <text class="flowlbl" x="333" y="200">benchmark factors</text>
+
+  <!-- Price Sources -> System -->
+  <path class="flow" marker-end="url(#a)" d="M640,140 L510,248"/>
+  <text class="flowlbl" x="615" y="200">live prices</text>
+</svg>

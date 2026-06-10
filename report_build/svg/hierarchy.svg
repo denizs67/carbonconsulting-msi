@@ -1,0 +1,92 @@
+<svg viewBox="0 0 960 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="960" height="560" fill="#ffffff"/>
+  <style>
+    .root { fill:#1e293b; stroke:#0f172a; stroke-width:1.5; }
+    .rootlbl { fill:#ffffff; font-size:13px; font-weight:700; text-anchor:middle; }
+    .l1 { fill:#e0ecfb; stroke:#1d4ed8; stroke-width:1.5; }
+    .l1lbl { fill:#0f172a; font-size:11.5px; font-weight:700; text-anchor:middle; }
+    .l2 { fill:#f8fafc; stroke:#94a3b8; stroke-width:1.2; }
+    .l2lbl { fill:#334155; font-size:10.5px; text-anchor:middle; }
+    .ln { stroke:#94a3b8; stroke-width:1.3; fill:none; }
+    .title { fill:#0f172a; font-size:16px; font-weight:700; text-anchor:middle; }
+  </style>
+
+  <text class="title" x="480" y="30">Process Hierarchy Chart — TO-BE System</text>
+
+  <!-- Root -->
+  <rect class="root" x="380" y="55" width="200" height="44" rx="5"/>
+  <text class="rootlbl" x="480" y="82">CarbonConsulting System</text>
+
+  <!-- Level 1 connectors -->
+  <path class="ln" d="M480,99 L480,120 M100,120 L860,120"/>
+  <path class="ln" d="M100,120 L100,140 M290,120 L290,140 M480,120 L480,140 M670,120 L670,140 M860,120 L860,140"/>
+
+  <!-- Level 1 nodes (5) centered at x=100,290,480,670,860 -->
+  <g>
+    <rect class="l1" x="25" y="140" width="150" height="48" rx="5"/>
+    <text class="l1lbl" x="100" y="160">1.0 Sector &amp;</text>
+    <text class="l1lbl" x="100" y="176">Data Input</text>
+
+    <rect class="l1" x="215" y="140" width="150" height="48" rx="5"/>
+    <text class="l1lbl" x="290" y="160">2.0 Emission</text>
+    <text class="l1lbl" x="290" y="176">Calculation</text>
+
+    <rect class="l1" x="405" y="140" width="150" height="48" rx="5"/>
+    <text class="l1lbl" x="480" y="160">3.0 Certificate &amp;</text>
+    <text class="l1lbl" x="480" y="176">Cost Analysis</text>
+
+    <rect class="l1" x="595" y="140" width="150" height="48" rx="5"/>
+    <text class="l1lbl" x="670" y="160">4.0 Reporting</text>
+    <text class="l1lbl" x="670" y="176">&amp; Output</text>
+
+    <rect class="l1" x="785" y="140" width="150" height="48" rx="5"/>
+    <text class="l1lbl" x="860" y="160">5.0 Data</text>
+    <text class="l1lbl" x="860" y="176">Administration</text>
+  </g>
+
+  <!-- Level 2 children -->
+  <!-- under 1.0 -->
+  <path class="ln" d="M100,188 L100,210 M55,210 L145,210 M55,210 L55,230 M145,210 L145,230"/>
+  <rect class="l2" x="10" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="55" y="248">1.1 Select</text>
+  <text class="l2lbl" x="55" y="262">sector</text>
+  <rect class="l2" x="105" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="150" y="248">1.2 Enter</text>
+  <text class="l2lbl" x="150" y="262">production</text>
+
+  <!-- under 2.0 -->
+  <path class="ln" d="M290,188 L290,210 M245,210 L335,210 M245,210 L245,230 M335,210 L335,230"/>
+  <rect class="l2" x="200" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="245" y="248">2.1 Apply</text>
+  <text class="l2lbl" x="245" y="262">factors</text>
+  <rect class="l2" x="295" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="340" y="248">2.2 Scope</text>
+  <text class="l2lbl" x="340" y="262">1+2 total</text>
+
+  <!-- under 3.0 -->
+  <path class="ln" d="M480,188 L480,210 M435,210 L525,210 M435,210 L435,230 M525,210 L525,230"/>
+  <rect class="l2" x="390" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="435" y="248">3.1 Cert.</text>
+  <text class="l2lbl" x="435" y="262">need</text>
+  <rect class="l2" x="485" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="530" y="248">3.2 Cost</text>
+  <text class="l2lbl" x="530" y="262">scenarios</text>
+
+  <!-- under 4.0 -->
+  <path class="ln" d="M670,188 L670,210 M625,210 L715,210 M625,210 L625,230 M715,210 L715,230"/>
+  <rect class="l2" x="580" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="625" y="248">4.1 On-screen</text>
+  <text class="l2lbl" x="625" y="262">result</text>
+  <rect class="l2" x="675" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="720" y="248">4.2 Export</text>
+  <text class="l2lbl" x="720" y="262">report</text>
+
+  <!-- under 5.0 -->
+  <path class="ln" d="M860,188 L860,210 M815,210 L905,210 M815,210 L815,230 M905,210 L905,230"/>
+  <rect class="l2" x="770" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="815" y="248">5.1 Manage</text>
+  <text class="l2lbl" x="815" y="262">factors/prices</text>
+  <rect class="l2" x="865" y="230" width="90" height="40" rx="4"/>
+  <text class="l2lbl" x="910" y="248">5.2 Manage</text>
+  <text class="l2lbl" x="910" y="262">users</text>
+</svg>

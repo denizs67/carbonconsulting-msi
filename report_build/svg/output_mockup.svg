@@ -1,0 +1,50 @@
+<svg viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="720" height="560" fill="#ffffff"/>
+  <style>
+    .dark { fill:#0f172a; }
+    .card { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.3; }
+    .capt { fill:#64748b; font-size:11px; }
+    .captw { fill:#94a3b8; font-size:11px; }
+    .big { fill:#0f172a; font-size:30px; font-weight:700; }
+    .bigw { fill:#ffffff; font-size:30px; font-weight:700; }
+    .unit { fill:#64748b; font-size:12px; }
+    .unitw { fill:#94a3b8; font-size:12px; }
+    .row { fill:#0f172a; font-size:12.5px; font-weight:600; }
+    .rsub { fill:#64748b; font-size:10.5px; }
+    .val { fill:#0f172a; font-size:15px; font-weight:700; text-anchor:end; }
+    .h { fill:#0f172a; font-size:13px; font-weight:700; }
+    .title { fill:#0f172a; font-size:15px; font-weight:700; text-anchor:middle; }
+  </style>
+
+  <text class="title" x="360" y="26">Output Interface — Result &amp; Cost Report Panel</text>
+
+  <!-- Total Emission (dark card) -->
+  <rect class="dark" x="40" y="50" width="640" height="92" rx="8"/>
+  <text class="captw" x="62" y="80">Total Emission</text>
+  <text class="bigw" x="62" y="118">707.625</text>
+  <text class="unitw" x="250" y="118">tCO₂e / year   ·   Scope 1 + 2</text>
+
+  <!-- Certificate need -->
+  <rect class="card" x="40" y="158" width="640" height="80" rx="8"/>
+  <text class="capt" x="62" y="186">CBAM Certificate Need</text>
+  <text class="big" x="62" y="222" style="font-size:24px;">247.669</text>
+  <text class="unit" x="230" y="222">certificates  ·  = emission × EU export ratio</text>
+
+  <!-- Cost scenarios -->
+  <rect class="card" x="40" y="254" width="640" height="246" rx="8"/>
+  <text class="h" x="62" y="284">Cost Scenarios</text>
+
+  <line x1="62" y1="300" x2="658" y2="300" stroke="#e2e8f0" stroke-width="1"/>
+  <text class="row" x="62" y="328">Scenario 1 — CBAM Obligation (EUA)</text>
+  <text class="rsub" x="62" y="346">€ 82.45 / t  ·  mandatory cost</text>
+  <text class="val" x="658" y="336">€ 20.420.288</text>
+
+  <line x1="62" y1="368" x2="658" y2="368" stroke="#e2e8f0" stroke-width="1"/>
+  <text class="row" x="62" y="396">Scenario 2 — CBAM + Voluntary Net-Zero</text>
+  <text class="rsub" x="62" y="414">full EUA + remaining emission via VCM ($14.30)</text>
+  <text class="val" x="658" y="404">€ 26.511.088</text>
+
+  <line x1="62" y1="436" x2="658" y2="436" stroke="#e2e8f0" stroke-width="1"/>
+  <text class="rsub" x="62" y="462">Note: VCM credits cannot discharge the CBAM obligation; the second</text>
+  <text class="rsub" x="62" y="478">scenario adds voluntary offsetting of the non-EU residual emission only.</text>
+</svg>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karbon Hesaplama · CarbonConsulting</title>
+  <meta name="description" content="Sektör seç, üretim verisi gir, karbon emisyonu ve CBAM sertifika ihtiyacını hesapla." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { 50:'#eff6ff', 100:'#dbeafe', 500:'#3b82f6', 600:'#2563eb', 700:'#1d4ed8', 900:'#1e3a8a' } },
+      fontFamily: { sans: ['Inter','system-ui','-apple-system','Segoe UI','Roboto','sans-serif'] }
+    }}}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+    input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; }
+  </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="index.html" class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-md bg-brand-600 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 6a8 8 0 100 12"/></svg>
+          </div>
+          <span class="font-semibold text-base text-slate-900 tracking-tight">CarbonConsulting</span>
+        </a>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-50 transition">Anasayfa</a>
+          <a href="sektorler.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-50 transition">Sektörler</a>
+          <a href="sertifikalar.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-50 transition">Karbon Sertifikaları</a>
+          <a href="hesaplama.html" class="px-3 py-2 text-sm font-medium text-brand-700 bg-brand-50 rounded-md transition">Hesaplama</a>
+          <a href="yesil-finansman.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-50 transition">Yeşil Finansman</a>
+        </div>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:bg-slate-100 focus:outline-none" aria-label="Menüyü aç/kapat">
+          <svg id="menuOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="menuClose" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Anasayfa</a>
+        <a href="sektorler.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Sektörler</a>
+        <a href="sertifikalar.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Karbon Sertifikaları</a>
+        <a href="hesaplama.html" class="block px-3 py-2 rounded-md text-base font-medium text-brand-700 bg-brand-50">Hesaplama</a>
+        <a href="yesil-finansman.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Yeşil Finansman</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 leading-tight">Karbon İhtiyacını Hesapla</h1>
+      <p class="mt-4 text-lg text-slate-600 max-w-3xl">
+        Sektörünü seç, üretim verilerini gir. Scope 1+2 emisyonu hesaplanır, CBAM sertifika ihtiyacı ve yıllık maliyet iki senaryoda raporlanır.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORM + RESULT -->
+  <section class="py-12 lg:py-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-5 gap-8">
+
+        <!-- FORM -->
+        <div class="lg:col-span-3">
+          <div class="bg-white rounded-lg border border-slate-200 p-6 lg:p-8">
+            <div class="flex items-baseline gap-3">
+              <span class="text-sm font-semibold text-slate-400 tabular-nums">01.</span>
+              <h2 class="text-xl font-semibold text-slate-900">Sektör Seç</h2>
+            </div>
+            <p class="mt-1 text-sm text-slate-500 pl-8">CBAM kapsamındaki 5 sektörden birini seç.</p>
+            <input type="hidden" id="sectorSelect" value="" />
+            <div class="mt-4 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              <button type="button" data-sector="celik" class="sector-btn group flex flex-col items-center justify-center gap-2 p-4 bg-white border border-slate-200 hover:border-slate-400 rounded-md transition text-center">
+                <svg class="w-6 h-6 text-slate-500 group-hover:text-slate-900 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2 20h20M4 20V9l5 3V9l5 3V9l5 3v8M8 20v-4h2v4M14 20v-4h2v4"/></svg>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900">Demir-Çelik</span>
+              </button>
+              <button type="button" data-sector="cimento" class="sector-btn group flex flex-col items-center justify-center gap-2 p-4 bg-white border border-slate-200 hover:border-slate-400 rounded-md transition text-center">
+                <svg class="w-6 h-6 text-slate-500 group-hover:text-slate-900 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M5 21V10l7-4 7 4v11M9 21v-6h6v6M9 13h.01M15 13h.01"/></svg>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900">Çimento</span>
+              </button>
+              <button type="button" data-sector="aluminyum" class="sector-btn group flex flex-col items-center justify-center gap-2 p-4 bg-white border border-slate-200 hover:border-slate-400 rounded-md transition text-center">
+                <svg class="w-6 h-6 text-slate-500 group-hover:text-slate-900 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900">Alüminyum</span>
+              </button>
+              <button type="button" data-sector="gubre" class="sector-btn group flex flex-col items-center justify-center gap-2 p-4 bg-white border border-slate-200 hover:border-slate-400 rounded-md transition text-center">
+                <svg class="w-6 h-6 text-slate-500 group-hover:text-slate-900 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22V10M12 10c-3 0-6-2-6-6 4 0 6 2 6 6zM12 10c3 0 6-2 6-6-4 0-6 2-6 6zM6 22h12"/></svg>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900">Gübre</span>
+              </button>
+              <button type="button" data-sector="elektrik" class="sector-btn group flex flex-col items-center justify-center gap-2 p-4 bg-white border border-slate-200 hover:border-slate-400 rounded-md transition text-center">
+                <svg class="w-6 h-6 text-slate-500 group-hover:text-slate-900 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+                <span class="text-sm font-medium text-slate-700 group-hover:text-slate-900">Elektrik</span>
+              </button>
+            </div>
+
+            <div id="formContainer" class="mt-8 hidden">
+              <div class="flex items-baseline gap-3">
+                <span class="text-sm font-semibold text-slate-400 tabular-nums">02.</span>
+                <h2 class="text-xl font-semibold text-slate-900">Üretim Verileri</h2>
+              </div>
+              <p class="mt-1 text-sm text-slate-500 pl-8">Sektöre özel veri girişi.</p>
+
+              <!-- CELIK FORM -->
+              <div id="form-celik" class="hidden mt-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Üretim Rotası</label>
+                  <select id="celik-route" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+                    <option value="1.530" data-scrap="1">BF/BOF — Entegre Tesis (1,530 tCO₂/t)</option>
+                    <option value="1.033" data-scrap="1">DRI/EAF — Doğrudan İndirgenmiş (1,033 tCO₂/t)</option>
+                    <option value="0.370" data-scrap="0">Scrap-EAF — Hurda Bazlı (0,37 tCO₂/t)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Yıllık Üretim (ton)</label>
+                  <input id="celik-amount" type="number" placeholder="500000" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Hurda Oranı (%)</label>
+                  <input id="celik-scrap" type="number" placeholder="25" min="0" max="100" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                  <p id="celik-scrap-note" class="text-xs text-slate-500 mt-1">Hurda kullanımı emisyon yoğunluğunu düşürür.</p>
+                </div>
+              </div>
+
+              <!-- CIMENTO FORM -->
+              <div id="form-cimento" class="hidden mt-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Çimento Tipi</label>
+                  <select id="cimento-type" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+                    <option value="0.54">CEM I (OPC) — 95-100% klinker (0,54 tCO₂/t)</option>
+                    <option value="0.45">CEM II — 65-94% klinker (0,45 tCO₂/t)</option>
+                    <option value="0.30">CEM III — 5-64% klinker (0,30 tCO₂/t)</option>
+                    <option value="0.50">CEM IV (Puzzolanic) (0,50 tCO₂/t)</option>
+                    <option value="0.35">CEM V (Composite) (0,35 tCO₂/t)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Yıllık Üretim (ton)</label>
+                  <input id="cimento-amount" type="number" placeholder="1000000" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Alternatif Yakıt Oranı (%)</label>
+                  <input id="cimento-altfuel" type="number" placeholder="15" min="0" max="100" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                  <p class="text-xs text-slate-500 mt-1">Alternatif yakıt oranı arttıkça emisyon düşer.</p>
+                </div>
+              </div>
+
+              <!-- ALUMINYUM FORM -->
+              <div id="form-aluminyum" class="hidden mt-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Üretim Tipi</label>
+                  <select id="aluminyum-type" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+                    <option value="14">Primary (12-16 tCO₂e/t)</option>
+                    <option value="0.5">Secondary / Recycled (~0,5 tCO₂e/t)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Hücre Teknolojisi</label>
+                  <select id="aluminyum-tech" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+                    <option value="0.85">CWPB — en yüksek PFC capture (%95)</option>
+                    <option value="0.95">SWPB — orta capture (%90)</option>
+                    <option value="1.00">HSS — orta capture (%90)</option>
+                    <option value="1.15">VSS — en düşük capture (%85)</option>
+                  </select>
+                  <p class="text-xs text-slate-500 mt-1">PFC capture verimi düştükçe emisyon yoğunluğu artar. Secondary için uygulanmaz (PFC yok).</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Yıllık Üretim (ton)</label>
+                  <input id="aluminyum-amount" type="number" placeholder="80000" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                </div>
+              </div>
+
+              <!-- GUBRE FORM -->
+              <div id="form-gubre" class="hidden mt-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Ürün Tipi</label>
+                  <select id="gubre-type" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+                    <option value="nh3">Amonyak (NH₃) — 2,0 tCO₂e/t (N₂O yok)</option>
+                    <option value="ure">Üre — 1,9 tCO₂e/t (minimal N₂O)</option>
+                    <option value="an">Ammonium Nitrate (AN) — 3,5 tCO₂e/t (max N₂O)</option>
+                    <option value="can">CAN — 3,2 tCO₂e/t (max N₂O)</option>
+                    <option value="npk">NPK Karışım — 2,5 tCO₂e/t</option>
+                  </select>
+                  <p class="text-xs text-slate-500 mt-1">Değerler abatement uygulanmamış (max N₂O) durumu içindir.</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">N₂O Abatement Seviyesi</label>
+                  <select id="gubre-abate" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+                    <option value="1.0">Abatement yok (en yüksek N₂O)</option>
+                    <option value="0.42">Secondary abatement (orta)</option>
+                    <option value="0.08">Tertiary abatement (en düşük)</option>
+                  </select>
+                  <p class="text-xs text-slate-500 mt-1">Sadece nitrik asit N₂O kısmını düşürür, doğalgaz baseline kalır.</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Yıllık Üretim (ton)</label>
+                  <input id="gubre-amount" type="number" placeholder="200000" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                </div>
+              </div>
+
+              <!-- ELEKTRIK FORM -->
+              <div id="form-elektrik" class="hidden mt-6 space-y-4">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Yakıt / Kaynak Tipi</label>
+                  <select id="elektrik-fuel" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm">
+                    <option value="1.1">Linyit (~1.100 gCO₂/kWh)</option>
+                    <option value="0.82">Taş Kömürü (~820 gCO₂/kWh)</option>
+                    <option value="0.48">Doğalgaz OCGT (~480 gCO₂/kWh)</option>
+                    <option value="0.37">Doğalgaz CCGT (~370 gCO₂/kWh)</option>
+                    <option value="0.40">TR Şebeke Ortalaması (~400 gCO₂/kWh)</option>
+                    <option value="0.012">Nükleer (~12 gCO₂/kWh)</option>
+                    <option value="0.004">Hidroelektrik (~4 gCO₂/kWh)</option>
+                    <option value="0.001">Rüzgar / Güneş (~0)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Yıllık Üretim (MWh)</label>
+                  <input id="elektrik-amount" type="number" placeholder="2000000" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Net Verim (%)</label>
+                  <input id="elektrik-eff" type="number" placeholder="92" min="50" max="100" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                  <p class="text-xs text-slate-500 mt-1">Düşük verim emisyon yoğunluğunu artırır.</p>
+                </div>
+              </div>
+
+              <div class="mt-8 pt-8 border-t border-slate-200">
+                <div class="flex items-baseline gap-3">
+                  <span class="text-sm font-semibold text-slate-400 tabular-nums">03.</span>
+                  <h2 class="text-xl font-semibold text-slate-900">AB İhracat Oranı</h2>
+                </div>
+                <p class="mt-1 text-sm text-slate-500 pl-8">CBAM yükümlülüğü sadece AB'ye giden üretim için.</p>
+                <div class="mt-4">
+                  <label class="block text-sm font-medium text-slate-700 mb-1.5">Üretimin AB'ye İhracat Yüzdesi (%)</label>
+                  <input id="export-rate" type="number" placeholder="35" min="0" max="100" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm" />
+                </div>
+              </div>
+
+              <button id="calcBtn" class="mt-8 w-full py-3.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-md transition">
+                Hesapla →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SONUC PANEL -->
+        <div class="lg:col-span-2">
+          <div id="resultEmpty" class="bg-white rounded-lg border border-slate-200 border-dashed p-8 text-center">
+            <div class="w-12 h-12 mx-auto rounded-md bg-slate-100 flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2M12 11v6m-3-3h6"/></svg>
+            </div>
+            <h3 class="text-sm font-semibold text-slate-700">Sonuç bekleniyor</h3>
+            <p class="mt-1 text-xs text-slate-500">Formu doldurup "Hesapla" butonuna bas.</p>
+          </div>
+
+          <div id="resultPanel" class="hidden space-y-4">
+            <div class="bg-slate-900 text-white rounded-lg p-6">
+              <div class="text-xs font-medium text-slate-400">Toplam Emisyon</div>
+              <div class="mt-2 flex items-baseline gap-2">
+                <span id="totalEmission" class="text-3xl font-bold tabular-nums">—</span>
+                <span class="text-sm text-slate-400">tCO₂e / yıl</span>
+              </div>
+              <div class="mt-1 text-xs text-slate-500">Scope 1 + 2 toplam</div>
+            </div>
+
+            <div class="bg-white rounded-lg border border-slate-200 p-6">
+              <div class="text-xs font-medium text-slate-500">CBAM Sertifika İhtiyacı</div>
+              <div class="mt-2 flex items-baseline gap-2">
+                <span id="cbamCert" class="text-2xl font-bold text-slate-900 tabular-nums">—</span>
+                <span class="text-sm text-slate-600">adet</span>
+              </div>
+              <div class="mt-1 text-xs text-slate-500">AB ihracat oranı kadar</div>
+            </div>
+
+            <div class="bg-white rounded-lg border border-slate-200 p-6">
+              <h4 class="text-sm font-semibold text-slate-900 mb-4">Maliyet Senaryoları</h4>
+              <div class="space-y-3.5">
+                <div class="flex justify-between items-baseline pb-3 border-b border-slate-100">
+                  <div>
+                    <div class="text-sm font-medium text-slate-800">CBAM Yükümlülüğü (EUA)</div>
+                    <div class="text-xs text-slate-500">€ <span data-cert-price-num="EUA">82,45</span> / t · zorunlu maliyet</div>
+                  </div>
+                  <div id="cost-eua" class="text-base font-bold text-slate-900 tabular-nums">—</div>
+                </div>
+                <div class="flex justify-between items-baseline">
+                  <div>
+                    <div class="text-sm font-medium text-slate-800">CBAM + Gönüllü Net-Zero</div>
+                    <div class="text-xs text-slate-500">CBAM tam EUA + kalan emisyon VCM ($<span data-cert-price-num="VCM">14,30</span>)</div>
+                  </div>
+                  <div id="cost-mix" class="text-base font-bold text-slate-900 tabular-nums">—</div>
+                </div>
+              </div>
+            </div>
+
+            <button id="resetBtn" class="w-full py-2.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-md transition">
+              Yeni Hesaplama
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- METODOLOJI -->
+  <section class="py-12 bg-white border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl font-bold text-slate-900">Hesap nasıl yapılıyor?</h2>
+      <div class="mt-8 grid sm:grid-cols-3 gap-px bg-slate-200 border border-slate-200 rounded-lg overflow-hidden">
+        <div class="bg-white p-5">
+          <div class="text-sm font-semibold text-slate-400 tabular-nums">01.</div>
+          <h3 class="mt-2 text-sm font-semibold text-slate-900">Emisyon Hesabı</h3>
+          <p class="mt-2 text-sm text-slate-600">Üretim × Emisyon Faktörü × Düzeltici = tCO₂e.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="text-sm font-semibold text-slate-400 tabular-nums">02.</div>
+          <h3 class="mt-2 text-sm font-semibold text-slate-900">CBAM Yükümlülüğü</h3>
+          <p class="mt-2 text-sm text-slate-600">tCO₂e × AB ihracat oranı = gerekli sertifika adedi. CBAM kapsamındaki emisyon için zorunlu.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="text-sm font-semibold text-slate-400 tabular-nums">03.</div>
+          <h3 class="mt-2 text-sm font-semibold text-slate-900">Maliyet Karşılaştırma</h3>
+          <p class="mt-2 text-sm text-slate-600">İki senaryo karşılaştırılır: zorunlu CBAM maliyeti (saf EUA) ve CBAM + kalan emisyonun VCM ile gönüllü dengelenmesi (net-zero).</p>
+        </div>
+      </div>
+      <p class="mt-6 text-xs text-slate-500">Demo: emisyon faktörleri, sertifika fiyatları ve döviz kurları statik. Üretim ortamında 15 dakikada bir API'den çekilir.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 pt-12 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-7 h-7 rounded-md bg-brand-600 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 6a8 8 0 100 12"/></svg>
+            </div>
+            <span class="font-semibold text-white">CarbonConsulting</span>
+          </div>
+          <p class="text-sm text-slate-500">CBAM uyum ve karbon sertifika yönetim platformu.</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white mb-4">Platform</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="sektorler.html" class="hover:text-white">Sektörler</a></li>
+            <li><a href="sertifikalar.html" class="hover:text-white">Sertifikalar</a></li>
+            <li><a href="hesaplama.html" class="hover:text-white">Hesaplama</a></li>
+            <li><a href="yesil-finansman.html" class="hover:text-white">Yeşil Finansman</a></li>
+            <li><a href="index.html#raporlar" class="hover:text-white">Raporlar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white mb-4">Standartlar</h4>
+          <ul class="space-y-2 text-sm">
+            <li>GHG Protocol</li>
+            <li>ISO 14064-1</li>
+            <li>IPCC AR6</li>
+            <li>Fertilizers Europe Calculator</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-slate-500">
+        <div>© 2026 CarbonConsulting · Tüm hakları saklıdır</div>
+        <div>İTÜ İşletme Mühendisliği · ISL 343E Term Project · 2025-2026 Bahar</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-prices.js"></script>
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (isOpen) { mobileMenu.classList.add('hidden'); menuOpen.classList.remove('hidden'); menuClose.classList.add('hidden'); }
+      else { mobileMenu.classList.remove('hidden'); menuOpen.classList.add('hidden'); menuClose.classList.remove('hidden'); }
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuOpen.classList.remove('hidden'); menuClose.classList.add('hidden'); });
+    });
+
+    // Sector button selection
+    const sectorSelect = document.getElementById('sectorSelect');
+    const formContainer = document.getElementById('formContainer');
+    const allForms = ['celik', 'cimento', 'aluminyum', 'gubre', 'elektrik'];
+    const sectorButtons = document.querySelectorAll('.sector-btn');
+
+    function selectSector(sector) {
+      sectorButtons.forEach(b => {
+        b.classList.remove('border-slate-900', 'bg-slate-50');
+        b.classList.add('border-slate-200');
+        b.querySelector('svg').classList.remove('text-slate-900');
+        b.querySelector('svg').classList.add('text-slate-500');
+        b.querySelector('span').classList.remove('text-slate-900');
+        b.querySelector('span').classList.add('text-slate-700');
+      });
+      allForms.forEach(s => document.getElementById('form-' + s).classList.add('hidden'));
+      if (sector) {
+        const activeBtn = document.querySelector('.sector-btn[data-sector="' + sector + '"]');
+        if (activeBtn) {
+          activeBtn.classList.remove('border-slate-200');
+          activeBtn.classList.add('border-slate-900', 'bg-slate-50');
+          activeBtn.querySelector('svg').classList.remove('text-slate-500');
+          activeBtn.querySelector('svg').classList.add('text-slate-900');
+          activeBtn.querySelector('span').classList.remove('text-slate-700');
+          activeBtn.querySelector('span').classList.add('text-slate-900');
+        }
+        sectorSelect.value = sector;
+        formContainer.classList.remove('hidden');
+        document.getElementById('form-' + sector).classList.remove('hidden');
+      } else {
+        sectorSelect.value = '';
+        formContainer.classList.add('hidden');
+      }
+    }
+
+    sectorButtons.forEach(btn => {
+      btn.addEventListener('click', () => selectSector(btn.dataset.sector));
+    });
+
+    // Çelik: Scrap-EAF seçilince hurda oranı alanı devre dışı (etki 0,37 faktörüne zaten dahil)
+    const celikRoute = document.getElementById('celik-route');
+    const celikScrap = document.getElementById('celik-scrap');
+    const celikScrapNote = document.getElementById('celik-scrap-note');
+    function updateCelikScrap() {
+      const applies = celikRoute.selectedOptions[0].dataset.scrap === '1';
+      celikScrap.disabled = !applies;
+      if (applies) {
+        celikScrap.classList.remove('bg-slate-100', 'text-slate-400', 'cursor-not-allowed');
+        celikScrapNote.textContent = 'Hurda kullanımı emisyon yoğunluğunu düşürür.';
+      } else {
+        celikScrap.value = '';
+        celikScrap.classList.add('bg-slate-100', 'text-slate-400', 'cursor-not-allowed');
+        celikScrapNote.textContent = 'Scrap-EAF rotası zaten hurda bazlı — hurda etkisi 0,37 faktörüne dahildir.';
+      }
+    }
+    celikRoute.addEventListener('change', updateCelikScrap);
+    updateCelikScrap();
+
+    // Pricing constants
+    const EUR_TRY = 36.50;
+    const USD_TRY = 33.80;
+    const USD_EUR = USD_TRY / EUR_TRY;
+    // Sertifika fiyatları Supabase'den okunur (window.CERT_PRICES); yoksa statik fallback
+    const FALLBACK_PRICES = { EUA: 82.45, VCM: 14.30 };
+    const liveEUA = () => window.CERT_PRICES?.EUA?.price ?? FALLBACK_PRICES.EUA;
+    const liveVCM = () => window.CERT_PRICES?.VCM?.price ?? FALLBACK_PRICES.VCM;
+
+    // Gübre: baseline doğalgaz + (N₂O kısmı × abatement çarpanı)
+    const GUBRE_PRODUCTS = {
+      nh3: { baseline: 2.0, n2o: 0.0 },
+      ure: { baseline: 1.7, n2o: 0.2 },
+      an:  { baseline: 1.9, n2o: 1.6 },
+      can: { baseline: 1.6, n2o: 1.6 },
+      npk: { baseline: 1.7, n2o: 0.8 }
+    };
+
+    const fmt = (n) => new Intl.NumberFormat('tr-TR', { maximumFractionDigits: 0 }).format(n);
+    const fmtEUR = (n) => '€ ' + fmt(n);
+    const fmtTRY = (n) => '₺ ' + fmt(n);
+
+    document.getElementById('calcBtn').addEventListener('click', () => {
+      const sector = sectorSelect.value;
+      if (!sector) { alert('Lütfen sektör seçin.'); return; }
+
+      let factor = 0, amount = 0, adjuster = 1;
+
+      if (sector === 'celik') {
+        const routeEl = document.getElementById('celik-route');
+        factor = parseFloat(routeEl.value);
+        amount = parseFloat(document.getElementById('celik-amount').value);
+        // Scrap-EAF (0,37) zaten hurda bazlı — hurda etkisi faktöre dahil, ek indirim çifte sayım olur
+        const scrapApplies = routeEl.selectedOptions[0].dataset.scrap === '1';
+        const scrap = parseFloat(document.getElementById('celik-scrap').value) || 0;
+        adjuster = scrapApplies ? 1 - (scrap / 100) * 0.3 : 1;
+      } else if (sector === 'cimento') {
+        factor = parseFloat(document.getElementById('cimento-type').value);
+        amount = parseFloat(document.getElementById('cimento-amount').value);
+        const altfuel = parseFloat(document.getElementById('cimento-altfuel').value) || 0;
+        adjuster = 1 - (altfuel / 100) * 0.2;
+      } else if (sector === 'aluminyum') {
+        factor = parseFloat(document.getElementById('aluminyum-type').value);
+        amount = parseFloat(document.getElementById('aluminyum-amount').value);
+        // Secondary (recycled): elektroliz yok, PFC yok — teknoloji çarpanı uygulanmaz
+        adjuster = factor >= 1 ? parseFloat(document.getElementById('aluminyum-tech').value) : 1;
+      } else if (sector === 'gubre') {
+        const prod = GUBRE_PRODUCTS[document.getElementById('gubre-type').value];
+        const abate = parseFloat(document.getElementById('gubre-abate').value);
+        amount = parseFloat(document.getElementById('gubre-amount').value);
+        factor = prod.baseline + (prod.n2o * abate);
+        adjuster = 1;
+      } else if (sector === 'elektrik') {
+        factor = parseFloat(document.getElementById('elektrik-fuel').value);
+        amount = parseFloat(document.getElementById('elektrik-amount').value);
+        const eff = parseFloat(document.getElementById('elektrik-eff').value) || 90;
+        adjuster = 90 / eff;
+      }
+
+      const exportRate = parseFloat(document.getElementById('export-rate').value);
+      if (!amount || amount <= 0) { alert('Lütfen geçerli üretim miktarı girin.'); return; }
+      if (isNaN(exportRate) || exportRate < 0 || exportRate > 100) { alert('Lütfen geçerli AB ihracat oranı girin (0-100).'); return; }
+
+      const totalEmission = amount * factor * adjuster;
+      const cbamCerts = totalEmission * (exportRate / 100);
+      const EUA_PRICE = liveEUA();
+      const VCM_PRICE = liveVCM();
+      const costEUA = cbamCerts * EUA_PRICE;
+      const vcmInEUR = VCM_PRICE * USD_EUR;
+      // CBAM yükümlülüğü VCM ile kapatılamaz; VCM sadece AB-dışı kalan emisyonun gönüllü dengelemesi
+      const costNetZero = costEUA + (totalEmission - cbamCerts) * vcmInEUR;
+
+      document.getElementById('resultEmpty').classList.add('hidden');
+      document.getElementById('resultPanel').classList.remove('hidden');
+      document.getElementById('totalEmission').textContent = fmt(totalEmission);
+      document.getElementById('cbamCert').textContent = fmt(cbamCerts);
+      document.getElementById('cost-eua').textContent = fmtEUR(costEUA);
+      document.getElementById('cost-mix').textContent = fmtEUR(costNetZero);
+
+      if (window.innerWidth < 1024) {
+        document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      document.getElementById('resultPanel').classList.add('hidden');
+      document.getElementById('resultEmpty').classList.remove('hidden');
+      selectSector('');
+      document.querySelectorAll('input[type=number]').forEach(i => i.value = '');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

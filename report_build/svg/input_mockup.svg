@@ -1,0 +1,65 @@
+<svg viewBox="0 0 760 620" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="620" fill="#ffffff"/>
+  <style>
+    .win { fill:#ffffff; stroke:#94a3b8; stroke-width:1.5; }
+    .bar { fill:#e2e8f0; }
+    .step { fill:#1d4ed8; font-size:12px; font-weight:700; }
+    .lbl { fill:#334155; font-size:11.5px; }
+    .field { fill:#f8fafc; stroke:#94a3b8; stroke-width:1.2; }
+    .ph { fill:#94a3b8; font-size:10.5px; }
+    .secbtn { fill:#f8fafc; stroke:#cbd5e1; stroke-width:1.2; }
+    .secsel { fill:#eff6ff; stroke:#1d4ed8; stroke-width:1.6; }
+    .seclbl { fill:#334155; font-size:10px; text-anchor:middle; }
+    .btn { fill:#0f172a; }
+    .btnlbl { fill:#ffffff; font-size:12px; font-weight:700; text-anchor:middle; }
+    .title { fill:#0f172a; font-size:15px; font-weight:700; text-anchor:middle; }
+  </style>
+
+  <text class="title" x="380" y="26">Input Interface — Carbon Calculation Form</text>
+
+  <rect class="win" x="40" y="44" width="680" height="556" rx="8"/>
+  <rect class="bar" x="40" y="44" width="680" height="28" rx="8"/>
+  <circle cx="60" cy="58" r="4" fill="#cbd5e1"/><circle cx="76" cy="58" r="4" fill="#cbd5e1"/><circle cx="92" cy="58" r="4" fill="#cbd5e1"/>
+  <text x="380" y="62" style="fill:#64748b;font-size:10px;text-anchor:middle;">carbonconsulting-msi.web.app / hesaplama</text>
+
+  <!-- Step 1 -->
+  <text class="step" x="64" y="100">01.  Select Sector</text>
+  <g>
+    <rect class="secsel" x="64" y="112" width="120" height="46" rx="5"/>
+    <text class="seclbl" x="124" y="139">Steel</text>
+    <rect class="secbtn" x="194" y="112" width="120" height="46" rx="5"/>
+    <text class="seclbl" x="254" y="139">Cement</text>
+    <rect class="secbtn" x="324" y="112" width="120" height="46" rx="5"/>
+    <text class="seclbl" x="384" y="139">Aluminium</text>
+    <rect class="secbtn" x="454" y="112" width="120" height="46" rx="5"/>
+    <text class="seclbl" x="514" y="139">Fertilizer</text>
+    <rect class="secbtn" x="584" y="112" width="112" height="46" rx="5"/>
+    <text class="seclbl" x="640" y="139">Electricity</text>
+  </g>
+
+  <!-- Step 2 -->
+  <text class="step" x="64" y="196">02.  Production Data</text>
+  <text class="lbl" x="64" y="220">Production Route</text>
+  <rect class="field" x="64" y="228" width="632" height="34" rx="5"/>
+  <text class="ph" x="76" y="249">BF/BOF — Integrated (1.530 tCO₂/t)            ▾</text>
+
+  <text class="lbl" x="64" y="288">Annual Production (tonnes)</text>
+  <rect class="field" x="64" y="296" width="310" height="34" rx="5"/>
+  <text class="ph" x="76" y="317">500000</text>
+
+  <text class="lbl" x="386" y="288">Scrap Ratio (%)</text>
+  <rect class="field" x="386" y="296" width="310" height="34" rx="5"/>
+  <text class="ph" x="398" y="317">25</text>
+
+  <!-- Step 3 -->
+  <text class="step" x="64" y="368">03.  EU Export Ratio</text>
+  <text class="lbl" x="64" y="392">Share of production exported to the EU (%)</text>
+  <rect class="field" x="64" y="400" width="632" height="34" rx="5"/>
+  <text class="ph" x="76" y="421">35</text>
+
+  <!-- Button -->
+  <rect class="btn" x="64" y="468" width="632" height="44" rx="6"/>
+  <text class="btnlbl" x="380" y="495">Calculate →</text>
+
+  <text x="64" y="546" style="fill:#94a3b8;font-size:10px;">Form fields are rendered dynamically per selected sector (5 distinct field sets).</text>
+</svg>

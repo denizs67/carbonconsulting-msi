@@ -1,0 +1,105 @@
+<svg viewBox="0 0 900 720" xmlns="http://www.w3.org/2000/svg" font-family="Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="720" fill="#ffffff"/>
+  <style>
+    .oval { fill:#ffffff; stroke:#94a3b8; stroke-width:1.4; }
+    .oval-adm { fill:#ffffff; stroke:#cbd5e1; stroke-width:1.4; }
+    .uc { fill:#0f172a; font-size:12px; text-anchor:middle; }
+    .actorlbl { fill:#0f172a; font-size:12.5px; font-weight:600; text-anchor:middle; }
+    .stick { stroke:#0f172a; stroke-width:1.8; fill:none; stroke-linecap:round; }
+    .assoc { stroke:#64748b; stroke-width:1; }
+    .rel { stroke:#64748b; stroke-width:1.2; stroke-dasharray:5 4; fill:none; }
+    .rellbl { fill:#1d4ed8; font-size:10.5px; font-style:italic; text-anchor:middle; }
+    .boundary { fill:none; stroke:#94a3b8; stroke-width:1.4; }
+    .boundlbl { fill:#475569; font-size:13px; font-weight:700; text-anchor:middle; }
+    .title { fill:#0f172a; font-size:16px; font-weight:700; text-anchor:middle; }
+  </style>
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="9" refX="7.5" refY="3" orient="auto">
+      <path d="M0,0 L7.5,3 L0,6" fill="none" stroke="#64748b" stroke-width="1.2"/>
+    </marker>
+  </defs>
+
+  <text class="title" x="450" y="34">Use Case Diagram — CarbonConsulting</text>
+
+  <rect class="boundary" x="232" y="78" width="500" height="600" rx="10"/>
+  <text class="boundlbl" x="482" y="100">CarbonConsulting System</text>
+
+  <!-- LEFT ACTOR -->
+  <g class="stick">
+    <circle cx="100" cy="352" r="12"/>
+    <line x1="100" y1="364" x2="100" y2="398"/>
+    <line x1="82" y1="378" x2="118" y2="378"/>
+    <line x1="100" y1="398" x2="86" y2="420"/>
+    <line x1="100" y1="398" x2="114" y2="420"/>
+  </g>
+  <text class="actorlbl" x="100" y="444">Exporter Company</text>
+  <text class="actorlbl" x="100" y="460">User</text>
+
+  <!-- RIGHT ACTOR -->
+  <g class="stick">
+    <circle cx="802" cy="286" r="12"/>
+    <line x1="802" y1="298" x2="802" y2="332"/>
+    <line x1="784" y1="312" x2="820" y2="312"/>
+    <line x1="802" y1="332" x2="788" y2="354"/>
+    <line x1="802" y1="332" x2="816" y2="354"/>
+  </g>
+  <text class="actorlbl" x="802" y="378">System</text>
+  <text class="actorlbl" x="802" y="394">Administrator</text>
+
+  <!-- Associations: Exporter -->
+  <line class="assoc" x1="118" y1="384" x2="247" y2="150"/>
+  <line class="assoc" x1="118" y1="384" x2="247" y2="220"/>
+  <line class="assoc" x1="118" y1="384" x2="247" y2="300"/>
+  <line class="assoc" x1="118" y1="384" x2="247" y2="385"/>
+  <line class="assoc" x1="118" y1="384" x2="247" y2="465"/>
+  <line class="assoc" x1="118" y1="384" x2="247" y2="545"/>
+  <line class="assoc" x1="118" y1="384" x2="247" y2="620"/>
+
+  <!-- Associations: Admin -->
+  <line class="assoc" x1="784" y1="312" x2="715" y2="165"/>
+  <line class="assoc" x1="784" y1="312" x2="715" y2="265"/>
+  <line class="assoc" x1="784" y1="312" x2="715" y2="365"/>
+  <line class="assoc" x1="784" y1="312" x2="715" y2="465"/>
+
+  <!-- include / extend -->
+  <path class="rel" marker-end="url(#arr)" d="M300,288 C250,250 250,200 300,168"/>
+  <text class="rellbl" x="243" y="232">«include»</text>
+  <path class="rel" marker-end="url(#arr)" d="M355,275 L355,247"/>
+  <text class="rellbl" x="398" y="263">«include»</text>
+  <path class="rel" marker-end="url(#arr)" d="M430,533 C480,495 480,440 430,408"/>
+  <text class="rellbl" x="492" y="474">«extend»</text>
+
+  <!-- Exporter use cases -->
+  <ellipse class="oval" cx="355" cy="150" rx="108" ry="25"/>
+  <text class="uc" x="355" y="154">Select sector</text>
+  <ellipse class="oval" cx="355" cy="220" rx="108" ry="25"/>
+  <text class="uc" x="355" y="224">Enter production data</text>
+  <ellipse class="oval" cx="355" cy="300" rx="108" ry="25"/>
+  <text class="uc" x="355" y="296">Calculate carbon</text>
+  <text class="uc" x="355" y="310">emission</text>
+  <ellipse class="oval" cx="355" cy="385" rx="108" ry="25"/>
+  <text class="uc" x="355" y="381">View CBAM</text>
+  <text class="uc" x="355" y="395">certificate need</text>
+  <ellipse class="oval" cx="355" cy="465" rx="108" ry="25"/>
+  <text class="uc" x="355" y="461">Compare cost</text>
+  <text class="uc" x="355" y="475">scenarios</text>
+  <ellipse class="oval" cx="355" cy="545" rx="108" ry="25"/>
+  <text class="uc" x="355" y="549">Export report</text>
+  <ellipse class="oval" cx="355" cy="620" rx="108" ry="25"/>
+  <text class="uc" x="355" y="616">View information</text>
+  <text class="uc" x="355" y="630">pages</text>
+
+  <!-- Admin use cases -->
+  <ellipse class="oval-adm" cx="610" cy="165" rx="105" ry="25"/>
+  <text class="uc" x="610" y="161">Update emission</text>
+  <text class="uc" x="610" y="175">factors</text>
+  <ellipse class="oval-adm" cx="610" cy="265" rx="105" ry="25"/>
+  <text class="uc" x="610" y="261">Manage certificate</text>
+  <text class="uc" x="610" y="275">prices</text>
+  <ellipse class="oval-adm" cx="610" cy="365" rx="105" ry="25"/>
+  <text class="uc" x="610" y="361">Update reference</text>
+  <text class="uc" x="610" y="375">content</text>
+  <ellipse class="oval-adm" cx="610" cy="465" rx="105" ry="25"/>
+  <text class="uc" x="610" y="461">Manage user</text>
+  <text class="uc" x="610" y="475">accounts</text>
+</svg>

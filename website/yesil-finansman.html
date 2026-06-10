@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yeşil Finansman · CarbonConsulting</title>
+  <meta name="description" content="Yeşil tahvil nedir, hangi standartlar var, Türkiye ve global ihraç listeleri ile yeşil bono kullanım alanları." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { brand: { 50:'#eff6ff', 100:'#dbeafe', 500:'#3b82f6', 600:'#2563eb', 700:'#1d4ed8', 900:'#1e3a8a' } },
+      fontFamily: { sans: ['Inter','system-ui','-apple-system','Segoe UI','Roboto','sans-serif'] }
+    }}}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+  </style>
+</head>
+<body class="font-sans bg-white text-slate-800">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="index.html" class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-md bg-brand-600 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 6a8 8 0 100 12"/></svg>
+          </div>
+          <span class="font-semibold text-base text-slate-900 tracking-tight">CarbonConsulting</span>
+        </a>
+        <div class="hidden md:flex items-center gap-1">
+          <a href="index.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-50 transition">Anasayfa</a>
+          <a href="sektorler.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-50 transition">Sektörler</a>
+          <a href="sertifikalar.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-50 transition">Karbon Sertifikaları</a>
+          <a href="hesaplama.html" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-50 transition">Hesaplama</a>
+          <a href="yesil-finansman.html" class="px-3 py-2 text-sm font-medium text-brand-700 bg-brand-50 rounded-md transition">Yeşil Finansman</a>
+        </div>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-slate-700 hover:bg-slate-100 focus:outline-none" aria-label="Menüyü aç/kapat">
+          <svg id="menuOpen" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="menuClose" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </nav>
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Anasayfa</a>
+        <a href="sektorler.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Sektörler</a>
+        <a href="sertifikalar.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Karbon Sertifikaları</a>
+        <a href="hesaplama.html" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">Hesaplama</a>
+        <a href="yesil-finansman.html" class="block px-3 py-2 rounded-md text-base font-medium text-brand-700 bg-brand-50">Yeşil Finansman</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+      <div class="grid lg:grid-cols-5 gap-12 items-center">
+        <div class="lg:col-span-3">
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 leading-tight">Yeşil Finansman ve Yeşil Tahviller</h1>
+          <p class="mt-5 text-lg text-slate-600 max-w-2xl">
+            Sürdürülebilir projeleri finanse etmek için ihraç edilen tahvil türü. Bilgilendirici sayfa:
+            sertifika standartları, kullanım alanları, Türkiye ve global aktif ihraçlar.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-2">
+            <a href="#nedir" class="px-3.5 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-md transition">Yeşil tahvil nedir?</a>
+            <a href="#standartlar" class="px-3.5 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-md transition">Standartlar</a>
+            <a href="#kullanim" class="px-3.5 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-md transition">Kullanım alanları</a>
+            <a href="#global" class="px-3.5 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-md transition">Global ihraçlar</a>
+            <a href="#turkiye" class="px-3.5 py-1.5 text-sm font-medium text-slate-700 bg-white border border-slate-300 hover:border-slate-400 rounded-md transition">Türkiye ihraçları</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <!-- GÖRSEL: kendi fotoğrafını koymak için src değerini değiştir -->
+          <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&q=80&auto=format&fit=crop"
+               alt="Yenilenebilir enerji yatırımı"
+               class="rounded-lg w-full h-[300px] lg:h-[420px] object-cover border border-slate-200"
+               loading="eager" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEDIR -->
+  <section id="nedir" class="py-16 lg:py-20 border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold tracking-tight text-slate-900">Yeşil tahvil nedir?</h2>
+      <div class="mt-6 space-y-4 text-slate-700 leading-relaxed max-w-4xl">
+        <p>
+          Yeşil tahvil (green bond), ihraç geliri belirli çevresel veya iklim odaklı projelerin
+          finansmanında kullanılan sabit getirili borçlanma aracıdır. Normal tahvilden farkı; toplanan paranın
+          sadece <strong>onaylı yeşil projelerde</strong> kullanılabilmesi ve bu kullanımın yatırımcıya
+          düzenli olarak raporlanmasıdır.
+        </p>
+        <p>
+          Piyasa 2007'de Avrupa Yatırım Bankası'nın ilk yeşil tahvili ile başladı. 2016'da küresel hacim
+          100 milyar dolara, 2024 sonunda 2,5 trilyon dolar kümülatif ihraca ulaştı. Türkiye'nin ilk yeşil
+          tahvilini <strong>TSKB 2016'da 300 milyon dolar</strong> ile ihraç etti.
+        </p>
+        <p>
+          Yeşil tahviller normal tahvillere göre <strong>%0,01-1,07 daha düşük faizle</strong> borçlanma imkânı
+          sağlayabilir (literatürde "greenium" olarak geçen yatırımcı tercihi farkı). Bu fark, ESG yatırımcılarının
+          artan talebinden ve sürdürülebilirlik raporlama zorunluluklarından kaynaklanır.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STANDARTLAR -->
+  <section id="standartlar" class="py-16 lg:py-20 bg-slate-50 border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900">Sertifika standartları</h2>
+        <p class="mt-4 text-slate-600">Üç ana standart kullanılıyor. Hepsi farklı sıklık ve zorlukta.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-lg border border-slate-200 p-6">
+          <div class="text-xs font-medium text-slate-500">EN YAYGIN</div>
+          <h3 class="mt-1 text-lg font-semibold text-slate-900">ICMA GBP</h3>
+          <p class="mt-1 text-sm text-slate-500">Green Bond Principles</p>
+          <div class="mt-5 space-y-2.5 text-sm">
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Çıkaran</span><span class="font-medium text-slate-900">ICMA</span></div>
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Tip</span><span class="font-medium text-slate-900">Gönüllü kılavuz</span></div>
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Doğrulama</span><span class="font-medium text-slate-900">Opsiyonel SPO</span></div>
+            <div class="flex justify-between"><span class="text-slate-600">Son güncelleme</span><span class="font-medium text-slate-900">Haziran 2025</span></div>
+          </div>
+          <p class="mt-5 text-sm text-slate-600">Piyasanın en yaygın referansı. 4 temel bileşen: gelir kullanımı, proje seçimi, gelir yönetimi, raporlama.</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-slate-200 p-6">
+          <div class="text-xs font-medium text-slate-500">SIKI</div>
+          <h3 class="mt-1 text-lg font-semibold text-slate-900">CBI Certified</h3>
+          <p class="mt-1 text-sm text-slate-500">Climate Bonds Standard</p>
+          <div class="mt-5 space-y-2.5 text-sm">
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Çıkaran</span><span class="font-medium text-slate-900">Climate Bonds Initiative</span></div>
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Tip</span><span class="font-medium text-slate-900">Üçüncü taraf doğrulama</span></div>
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Doğrulama</span><span class="font-medium text-slate-900">Zorunlu (akredite VVB)</span></div>
+            <div class="flex justify-between"><span class="text-slate-600">Versiyon</span><span class="font-medium text-slate-900">v4.0</span></div>
+          </div>
+          <p class="mt-5 text-sm text-slate-600">Bilimsel kriterler temelli. Sektör spesifik teknik kriterler (enerji, ulaşım, su, bina vb).</p>
+        </div>
+
+        <div class="bg-white rounded-lg border border-slate-200 p-6">
+          <div class="text-xs font-medium text-slate-500">YENİ · YASAL</div>
+          <h3 class="mt-1 text-lg font-semibold text-slate-900">EuGBS</h3>
+          <p class="mt-1 text-sm text-slate-500">European Green Bond Standard</p>
+          <div class="mt-5 space-y-2.5 text-sm">
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Çıkaran</span><span class="font-medium text-slate-900">AB Regülasyonu</span></div>
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Tip</span><span class="font-medium text-slate-900">Yasal standart</span></div>
+            <div class="flex justify-between border-b border-slate-100 pb-2"><span class="text-slate-600">Doğrulama</span><span class="font-medium text-slate-900">Zorunlu (ESMA kayıtlı)</span></div>
+            <div class="flex justify-between"><span class="text-slate-600">Yürürlük</span><span class="font-medium text-slate-900">21 Ara 2024</span></div>
+          </div>
+          <p class="mt-5 text-sm text-slate-600">AB Taksonomi'ye %85+ uyum şartı. İlk yılda 21 ihraççı kullandı. AB pazarına erişim avantajı sağlar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KULLANIM ALANLARI -->
+  <section id="kullanim" class="py-16 lg:py-20 border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900">Kullanım alanları</h2>
+        <p class="mt-4 text-slate-600">ICMA GBP'nin tanımladığı temel "use of proceeds" kategorileri.</p>
+      </div>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-slate-200 border border-slate-200 rounded-lg overflow-hidden">
+        <div class="bg-white p-5">
+          <div class="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-900">Yenilenebilir Enerji</div>
+          <p class="mt-1.5 text-xs text-slate-600">GES, RES, hidroelektrik, jeotermal, biyokütle santralleri.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-900">Enerji Verimliliği</div>
+          <p class="mt-1.5 text-xs text-slate-600">Bina retrofiti, sanayi süreçleri, akıllı şebeke yatırımları.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0zM13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1"/></svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-900">Düşük Karbon Ulaşım</div>
+          <p class="mt-1.5 text-xs text-slate-600">Raylı sistemler, elektrikli araç altyapısı, toplu taşıma.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.5C12 2.5 6 9 6 14a6 6 0 0012 0c0-5-6-11.5-6-11.5z"/></svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-900">Su Yönetimi</div>
+          <p class="mt-1.5 text-xs text-slate-600">Atık su arıtma, içme suyu altyapısı, sürdürülebilir sulama.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22V10M12 10c-3 0-6-2-6-6 4 0 6 2 6 6zM12 10c3 0 6-2 6-6-4 0-6 2-6 6z"/></svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-900">Sürdürülebilir Tarım</div>
+          <p class="mt-1.5 text-xs text-slate-600">Organik üretim, hassas tarım, toprak karbonu projeleri.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-900">Atık Yönetimi</div>
+          <p class="mt-1.5 text-xs text-slate-600">Geri dönüşüm tesisleri, biyogaz üretimi, döngüsel ekonomi.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-900">Yeşil Binalar</div>
+          <p class="mt-1.5 text-xs text-slate-600">LEED, BREEAM, EDGE sertifikalı ticari ve konut binaları.</p>
+        </div>
+        <div class="bg-white p-5">
+          <div class="w-9 h-9 rounded-md bg-slate-100 flex items-center justify-center mb-3">
+            <svg class="w-4 h-4 text-slate-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div class="text-sm font-semibold text-slate-900">İklim Adaptasyonu</div>
+          <p class="mt-1.5 text-xs text-slate-600">Sel koruma, kuraklığa dayanıklı tarım, yangın önleme.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOBAL IHRACLAR -->
+  <section id="global" class="py-16 lg:py-20 bg-slate-50 border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900">Global ihraçlar — son 3 ay</h2>
+        <p class="mt-4 text-slate-600">Son dönemde dikkat çeken ihraçlar.</p>
+        <p class="mt-2 text-xs text-slate-500">Kaynak: Climate Bonds Initiative · Labelled Bonds Database · ICMA Sustainable Bond Issuers Database (haftalık güncelleme)</p>
+      </div>
+
+      <div class="mt-10 overflow-x-auto -mx-4 sm:mx-0">
+        <table class="w-full text-sm min-w-[720px] bg-white border border-slate-200 rounded-lg">
+          <thead>
+            <tr class="border-b border-slate-200 text-slate-500 text-left text-xs">
+              <th class="py-3 px-4 font-medium">Tarih</th>
+              <th class="py-3 px-4 font-medium">İhraççı</th>
+              <th class="py-3 px-4 font-medium">Ülke</th>
+              <th class="py-3 px-4 font-medium">Sektör</th>
+              <th class="py-3 px-4 font-medium text-right">Miktar</th>
+              <th class="py-3 px-4 font-medium">Vade</th>
+              <th class="py-3 px-4 font-medium">Standart</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr><td class="py-3 px-4 tabular-nums">2026-05-12</td><td class="py-3 px-4 font-medium">Apple Inc.</td><td class="py-3 px-4">ABD</td><td class="py-3 px-4">Teknoloji</td><td class="py-3 px-4 text-right tabular-nums">$ 2.500M</td><td class="py-3 px-4">10y</td><td class="py-3 px-4">ICMA GBP</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2026-05-08</td><td class="py-3 px-4 font-medium">Iberdrola</td><td class="py-3 px-4">İspanya</td><td class="py-3 px-4">Enerji</td><td class="py-3 px-4 text-right tabular-nums">€ 1.000M</td><td class="py-3 px-4">8y</td><td class="py-3 px-4">EuGBS</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2026-04-30</td><td class="py-3 px-4 font-medium">EDF</td><td class="py-3 px-4">Fransa</td><td class="py-3 px-4">Enerji</td><td class="py-3 px-4 text-right tabular-nums">€ 2.000M</td><td class="py-3 px-4">12y</td><td class="py-3 px-4">EuGBS</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2026-04-22</td><td class="py-3 px-4 font-medium">Ørsted</td><td class="py-3 px-4">Danimarka</td><td class="py-3 px-4">Offshore Wind</td><td class="py-3 px-4 text-right tabular-nums">€ 750M</td><td class="py-3 px-4">7y</td><td class="py-3 px-4">CBI Certified</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2026-04-15</td><td class="py-3 px-4 font-medium">Volvo Cars</td><td class="py-3 px-4">İsveç</td><td class="py-3 px-4">Otomotiv</td><td class="py-3 px-4 text-right tabular-nums">€ 800M</td><td class="py-3 px-4">6y</td><td class="py-3 px-4">EuGBS</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2026-04-03</td><td class="py-3 px-4 font-medium">State Bank of India</td><td class="py-3 px-4">Hindistan</td><td class="py-3 px-4">Finans</td><td class="py-3 px-4 text-right tabular-nums">$ 1.000M</td><td class="py-3 px-4">5y</td><td class="py-3 px-4">ICMA GBP</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2026-03-28</td><td class="py-3 px-4 font-medium">Republic of Chile</td><td class="py-3 px-4">Şili</td><td class="py-3 px-4">Sovereign</td><td class="py-3 px-4 text-right tabular-nums">$ 1.500M</td><td class="py-3 px-4">15y</td><td class="py-3 px-4">ICMA GBP</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2026-03-15</td><td class="py-3 px-4 font-medium">Engie</td><td class="py-3 px-4">Fransa</td><td class="py-3 px-4">Enerji</td><td class="py-3 px-4 text-right tabular-nums">€ 1.200M</td><td class="py-3 px-4">9y</td><td class="py-3 px-4">CBI Certified</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TURKIYE IHRACLARI -->
+  <section id="turkiye" class="py-16 lg:py-20 border-b border-slate-200 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-bold tracking-tight text-slate-900">Türkiye ihraçları</h2>
+        <p class="mt-4 text-slate-600">TSKB'nin 2016'daki ilk ihracından bugüne Türk ihraççıların listesi.</p>
+        <p class="mt-2 text-xs text-slate-500">Kaynak: TSKB · T.C. Hazine · Garanti BBVA · İş Bankası · Türk Eximbank · İBB resmi açıklamaları</p>
+      </div>
+
+      <div class="mt-10 overflow-x-auto -mx-4 sm:mx-0">
+        <table class="w-full text-sm min-w-[720px] bg-white border border-slate-200 rounded-lg">
+          <thead>
+            <tr class="border-b border-slate-200 text-slate-500 text-left text-xs">
+              <th class="py-3 px-4 font-medium">Tarih</th>
+              <th class="py-3 px-4 font-medium">İhraççı</th>
+              <th class="py-3 px-4 font-medium">Tip</th>
+              <th class="py-3 px-4 font-medium text-right">Miktar</th>
+              <th class="py-3 px-4 font-medium">Vade</th>
+              <th class="py-3 px-4 font-medium">Standart</th>
+              <th class="py-3 px-4 font-medium">Not</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-700">
+            <tr><td class="py-3 px-4 tabular-nums">2016-05</td><td class="py-3 px-4 font-medium">TSKB</td><td class="py-3 px-4">Banka</td><td class="py-3 px-4 text-right tabular-nums">$ 300M</td><td class="py-3 px-4">5y</td><td class="py-3 px-4">ICMA GBP</td><td class="py-3 px-4 text-xs text-slate-500">Türkiye'nin ilki</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2020-09</td><td class="py-3 px-4 font-medium">Garanti BBVA</td><td class="py-3 px-4">Banka</td><td class="py-3 px-4 text-right tabular-nums">€ 75M</td><td class="py-3 px-4">5y</td><td class="py-3 px-4">ICMA GBP</td><td class="py-3 px-4 text-xs text-slate-500">—</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2022-11</td><td class="py-3 px-4 font-medium">İş Bankası</td><td class="py-3 px-4">Banka</td><td class="py-3 px-4 text-right tabular-nums">$ 400M</td><td class="py-3 px-4">5y</td><td class="py-3 px-4">ICMA GBP</td><td class="py-3 px-4 text-xs text-slate-500">—</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2023-04</td><td class="py-3 px-4 font-medium">Türk Eximbank</td><td class="py-3 px-4">Banka</td><td class="py-3 px-4 text-right tabular-nums">$ 500M</td><td class="py-3 px-4">5y</td><td class="py-3 px-4">ICMA GBP</td><td class="py-3 px-4 text-xs text-slate-500">İhracat finansmanı</td></tr>
+            <tr class="bg-slate-50"><td class="py-3 px-4 tabular-nums">2024-04</td><td class="py-3 px-4 font-medium">T.C. Hazine</td><td class="py-3 px-4">Sovereign</td><td class="py-3 px-4 text-right tabular-nums">$ 2.500M</td><td class="py-3 px-4">8y</td><td class="py-3 px-4">ICMA GBP</td><td class="py-3 px-4 text-xs text-slate-500">İlk Türk sovereign</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2025-02</td><td class="py-3 px-4 font-medium">İBB</td><td class="py-3 px-4">Yerel Yönetim</td><td class="py-3 px-4 text-right tabular-nums">€ 50M</td><td class="py-3 px-4">7y</td><td class="py-3 px-4">ICMA GBP</td><td class="py-3 px-4 text-xs text-slate-500">İlk Türk belediye</td></tr>
+            <tr><td class="py-3 px-4 tabular-nums">2025-09</td><td class="py-3 px-4 font-medium">TSKB</td><td class="py-3 px-4">Banka</td><td class="py-3 px-4 text-right tabular-nums">$ 350M</td><td class="py-3 px-4">6y</td><td class="py-3 px-4">EuGBS</td><td class="py-3 px-4 text-xs text-slate-500">İlk Türk EuGBS</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- GREENIUM / FAIZ -->
+  <section class="py-16 lg:py-20 bg-slate-900 text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold tracking-tight">Greenium — yeşil tahvilde faiz avantajı</h2>
+      <p class="mt-4 text-slate-300 leading-relaxed max-w-3xl">
+        Yatırımcıların yeşil tahvile fazla talebi nedeniyle ihraççı, normal tahvilden daha düşük faizle borçlanır.
+        Bu fark literatürde "greenium" olarak geçer; ortalama <strong>2-15 baz puan (%0,02-0,15)</strong>,
+        bazı vakalarda <strong>%1'e kadar</strong> ulaşır.
+      </p>
+      <div class="mt-10 grid sm:grid-cols-3 gap-px bg-slate-700 border border-slate-700 rounded-lg overflow-hidden">
+        <div class="bg-slate-900 p-5">
+          <div class="text-xs text-slate-400">Ortalama Greenium</div>
+          <div class="mt-1 text-2xl font-bold tabular-nums">2-15 bp</div>
+          <div class="mt-2 text-xs text-slate-400">Yatırım dereceli bonolar</div>
+        </div>
+        <div class="bg-slate-900 p-5">
+          <div class="text-xs text-slate-400">Maks. Tarihsel</div>
+          <div class="mt-1 text-2xl font-bold tabular-nums">~%1,07</div>
+          <div class="mt-2 text-xs text-slate-400">Bazı sovereign ihraçlarda</div>
+        </div>
+        <div class="bg-slate-900 p-5">
+          <div class="text-xs text-slate-400">Talep / Arz Oranı</div>
+          <div class="mt-1 text-2xl font-bold tabular-nums">2-4x</div>
+          <div class="mt-2 text-xs text-slate-400">Aşırı talepli ihraçlar</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 pt-12 pb-8 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-7 h-7 rounded-md bg-brand-600 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M18 6a8 8 0 100 12"/></svg>
+            </div>
+            <span class="font-semibold text-white">CarbonConsulting</span>
+          </div>
+          <p class="text-sm text-slate-500">CBAM uyum ve karbon sertifika yönetim platformu.</p>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white mb-4">Platform</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="sektorler.html" class="hover:text-white">Sektörler</a></li>
+            <li><a href="sertifikalar.html" class="hover:text-white">Sertifikalar</a></li>
+            <li><a href="hesaplama.html" class="hover:text-white">Hesaplama</a></li>
+            <li><a href="yesil-finansman.html" class="hover:text-white">Yeşil Finansman</a></li>
+            <li><a href="index.html#raporlar" class="hover:text-white">Raporlar</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-white mb-4">Standartlar</h4>
+          <ul class="space-y-2 text-sm">
+            <li>GHG Protocol · ISO 14064-1</li>
+            <li>ICMA Green Bond Principles</li>
+            <li>Climate Bonds Standard v4</li>
+            <li>EU Green Bond Standard</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-slate-500">
+        <div>© 2026 CarbonConsulting · Tüm hakları saklıdır</div>
+        <div>İTÜ İşletme Mühendisliği · ISL 343E Term Project · 2025-2026 Bahar</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOpen = document.getElementById('menuOpen');
+    const menuClose = document.getElementById('menuClose');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (isOpen) { mobileMenu.classList.add('hidden'); menuOpen.classList.remove('hidden'); menuClose.classList.add('hidden'); }
+      else { mobileMenu.classList.remove('hidden'); menuOpen.classList.add('hidden'); menuClose.classList.remove('hidden'); }
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuOpen.classList.remove('hidden'); menuClose.classList.add('hidden'); });
+    });
+  </script>
+</body>
+</html>
