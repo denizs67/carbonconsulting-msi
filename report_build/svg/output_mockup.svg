@@ -42,7 +42,7 @@
   <line x1="62" y1="368" x2="658" y2="368" stroke="#e2e8f0" stroke-width="1"/>
   <text class="row" x="62" y="396">Scenario 2 — CBAM + Voluntary Net-Zero</text>
   <text class="rsub" x="62" y="414">full EUA + remaining emission via VCM ($14.30)</text>
-  <text class="val" x="658" y="404">€ 26.511.088</text>
+  <text class="val" x="658" y="404">€ 26.511.117</text>
 
   <line x1="62" y1="436" x2="658" y2="436" stroke="#e2e8f0" stroke-width="1"/>
   <text class="rsub" x="62" y="462">Note: VCM credits cannot discharge the CBAM obligation; the second</text>

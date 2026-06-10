@@ -247,7 +247,7 @@ const design = [
   H2('3.5 Output Design — Screens, Queries and Reports'),
   P('Input interface. The calculator presents a three-step input: sector selection, sector-specific production data, and EU export ratio, with client-side validation.'),
   ...figure('input_mockup.png', 560, 1.226, 'Figure 7. Input interface — carbon calculation form.'),
-  P('Output interface. On submission the result panel shows total emission, the CBAM certificate need, and the two cost scenarios. The worked example uses steel (BF/BOF, 500,000 t, 25% scrap, 35% EU export): Emission = 500,000 × 1.530 × 0.925 = 707,625 tCO₂e; certificate need = 707,625 × 0.35 = 247,669; Scenario 1 = € 20,420,288; Scenario 2 = € 26,511,088.'),
+  P('Output interface. On submission the result panel shows total emission, the CBAM certificate need, and the two cost scenarios. The worked example uses steel (BF/BOF, 500,000 t, 25% scrap, 35% EU export): Emission = 500,000 × 1.530 × 0.925 = 707,625 tCO₂e; certificate need = 707,625 × 0.35 = 247,669; Scenario 1 = € 20,420,288; Scenario 2 = € 26,511,117.'),
   ...figure('output_mockup.png', 560, 1.286, 'Figure 8. Output interface — result and cost report panel.'),
   P('Screen list: Home (live price summary), Sectors (5 sector profiles), Certificates (EU ETS / TR-ETS / VCM with price chart), Calculator (input + result), Green Finance (information). Reports designed for export: CBAM Quarterly (PDF + XML), ISO 14064-1 inventory, CSRD/TSRS and CDP summaries.'),
   P('Example SQL queries the database supports (Output / query design):'),
